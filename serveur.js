@@ -2,7 +2,7 @@ const express=require("express")
 const mysql=require("mysql")
 const cors=require("cors")
 const bodyParser = require("body-parser")
-const bcrypt=require("bcrypt")
+const bcryptjs=require("bcryptjs")
 
 
 
@@ -44,7 +44,7 @@ app.post("/singin",(req,res)=>{
         res.send('utilisateur existant')
       } else {
         
-        bcrypt.hash(password,10,(err,mdp)=>{
+        bcryptjs.hash(password,10,(err,mdp)=>{
           if (err) {
             console.log(err)
           } else {
@@ -74,7 +74,7 @@ app.post("/login",(req,res)=>{
       res.send(err)
     } else {
       if (data.length>0) {
-       bcrypt.compare(password,data[0].password,(err,result)=>{
+       bcryptjs.compare(password,data[0].password,(err,result)=>{
           if (err) {
             res.send(err)
           } else { 
@@ -172,7 +172,7 @@ app.post("/insertionetudiant",(req,res)=>{
           if (err) {
             console.log(err)
           } else {
-            bcrypt.compare(password,data[0].password,(err,result)=>{
+            bcryptjs.compare(password,data[0].password,(err,result)=>{
               if (err) {
                 console.log(err)
               } else {
@@ -244,7 +244,7 @@ app.post("/modifmail",(req,res)=>{
     if (err) {
       res.send(err)
     } else {
-      bcrypt.compare(password,data[0].password,(err,result)=>{
+      bcryptjs.compare(password,data[0].password,(err,result)=>{
         if (err) {
           console.log(err)
         } else {
@@ -317,12 +317,12 @@ app.post("/modifpassword",(req,res)=>{
     if (err) {
       console.log(err)
     } else {
-        bcrypt.compare(password3,data1[0].password,(err,result)=>{
+        bcryptjs.compare(password3,data1[0].password,(err,result)=>{
           if (err) {
             console.log(err)
           } else {
             if (result===true) {
-              bcrypt.hash(password1,10,(err,mdp)=>{
+              bcryptjs.hash(password1,10,(err,mdp)=>{
                 if (err) {
                   console.log(err)
                 } else {
@@ -359,7 +359,7 @@ app.post("/modifnumero",(req,res)=>{
     if (err) {
       res.send(err)
     } else {
-      bcrypt.compare(passwordnumero,data[0].password,(err,result)=>{
+      bcryptjs.compare(passwordnumero,data[0].password,(err,result)=>{
         if (err) {
           console.log(err)
         } else {
@@ -544,7 +544,7 @@ app.post("/modificationetudiant",(req,res)=>{
           if (err) {
             console.log(err)
           } else {
-            bcrypt.compare(password,data[0].password,(err,result)=>{
+            bcryptjs.compare(password,data[0].password,(err,result)=>{
               if (err) {
                 console.log(err)
               } else {
@@ -609,7 +609,7 @@ app.post("/modf",(req,res)=>{
     if (err) {
       console.log(err)
     } else {
-      bcrypt.compare(password,data[0].password,(err,result)=>{
+      bcryptjs.compare(password,data[0].password,(err,result)=>{
         if (err) {
           console.log(err)
         } else {
@@ -675,7 +675,7 @@ app.post("/ajf",(req,res)=>{
     if (err) {
       console.log(err)
     } else {
-      bcrypt.compare(password,data[0].password,(err,result)=>{
+      bcryptjs.compare(password,data[0].password,(err,result)=>{
         if (err) {
           console.log(err)
         } else {
@@ -720,7 +720,7 @@ app.post("/modm",(req,res)=>{
     if (err) {
       console.log(err)
     } else {
-      bcrypt.compare(password,data[0].password,(err,result)=>{
+      bcryptjs.compare(password,data[0].password,(err,result)=>{
         if (err) {
           console.log(err)
         } else {
@@ -779,7 +779,7 @@ app.post("/ajm",(req,res)=>{
     if (err) {
       console.log(err)
     } else {
-      bcrypt.compare(password,data[0].password,(err,result)=>{
+      bcryptjs.compare(password,data[0].password,(err,result)=>{
         if (err) {
           console.log(err)
         } else {
@@ -822,7 +822,7 @@ app.post("/ajp",(req,res)=>{
     if (err) {
       console.log(err)
     } else {
-      bcrypt.compare(password,data[0].password,(err,result)=>{
+      bcryptjs.compare(password,data[0].password,(err,result)=>{
         if (err) {
           console.log(err)
         } else {
@@ -834,7 +834,7 @@ app.post("/ajp",(req,res)=>{
               if (data.length>0) {
                 res.send("professeur existant")
               } else {
-                    bcrypt.hash(mdp,10,(err,pass)=>{
+                    bcryptjs.hash(mdp,10,(err,pass)=>{
                       if (err) {
                         console.log(err)
                       } else {
@@ -872,7 +872,7 @@ app.post("/modp",(req,res)=>{
     if (err) {
       console.log(err)
     } else {
-      bcrypt.compare(password,data[0].password,(err,result)=>{
+      bcryptjs.compare(password,data[0].password,(err,result)=>{
         if (err) {
           console.log(err)
         } else {
