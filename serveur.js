@@ -27,6 +27,10 @@ db.connect((err) => {
     }
     console.log('Connexion à la base de données réussie.');
 })
+
+app.get("/abed",(req,res)=>{
+  res.send("bien joué Abed")
+})
   
 app.post("/singin",(req,res)=>{
   const nom=req.body.nom
